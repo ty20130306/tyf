@@ -45,18 +45,12 @@ class Tyf{
 		$cmdFile = $this->_mapper->mapToCmdFile($tyfInputMeta->getCmdName());
 		$this->requireFile($cmdFile);
 		
-		echo "cmdFile=$cmdFile<br>";
-		
 		$cmdClass	= $this->_mapper->mapToCmdClass($tyfInputMeta->getCmdName());
-		echo "cmd class=".$cmdClass."<br>";
 		if(! class_exists($cmdClass)){
-			echo "cmd class ".$cmdClass." not exists in file ".$cmdFile."<br>";
 			throw new TyfException("cmd class ".$cmdClass." not exists in file ".$cmdFile);
 		}
 		
-		echo "before map to actionFunc<br>";
 		$actionFunc	= $this->_mapper->mapToActionFunc($tyfInputMeta->getActionName());
-		echo "actionFunc=$actionFunc<br>";
 		
 		$cmdObj		= new $cmdClass();
 		$cmdObj->initTyfOutputMeta($tyfInputMeta->getCmdName(), $tyfInputMeta->getActionName());
