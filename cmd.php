@@ -31,6 +31,8 @@ class TyfCmd{
 	public function getCmdName(){
 		if(isset($this->_tyfOutputMeta)){
 			return $this->_tyfOutputMeta->getCmdName();
+		} else {
+			return "";
 		}
 	}
 }
