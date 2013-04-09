@@ -53,7 +53,7 @@ class Tyf{
 		$actionFunc	= $this->_mapper->mapToActionFunc($tyfInputMeta->getActionName());
 		
 		$cmdObj		= new $cmdClass();
-		$cmdObj->initTyfOutputMeta($tyfInputMeta->getCmdName(), $tyfInputMeta->getActionName());
+		$cmdObj->init($tyfInputMeta->getCmdName(), $tyfInputMeta->getActionName());
 		$cmdObj->$actionFunc($tyfInputMeta->getData());
 		$tyfOutputMeta = $cmdObj->getTyfOutputMeta();
 		

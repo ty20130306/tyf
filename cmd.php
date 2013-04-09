@@ -5,8 +5,9 @@ class TyfCmdException extends Exception{
 }
 
 class TyfCmd{
-	protected $_output = array();
-	protected $_tyfOutputMeta = null;
+	protected $_output			= array();
+	protected $_tyfOutputMeta	= null;
+	protected $_cmdName			= null;
 	
 	protected function checkInput(array $input){
 		$args = func_get_args();
@@ -19,21 +20,14 @@ class TyfCmd{
 		}
 	}
 	
-	public function initTyfOutputMeta($cmdName, $actionName){
-		$this->_tyfOutputMeta = new TyfMeta($cmdName, $actionName, array());
+	public function init($cmdName, $actionName){
+		$this->_tyfOutputMeta	= new TyfMeta($cmdName, $actionName, array());
+		$this->_cmdName			= $cmdName;
 	}
 	
 	public function getTyfOutputMeta(){
 		$this->_tyfOutputMeta->setData($this->_output);
 		return $this->_tyfOutputMeta;
-	}
-	
-	public function getCmdName(){
-		if(isset($this->_tyfOutputMeta)){
-			return $this->_tyfOutputMeta->getCmdName();
-		} else {
-			return "";
-		}
 	}
 }
 
