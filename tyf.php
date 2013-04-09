@@ -41,6 +41,21 @@ class Tyf{
 		return $output;
 	}
 
+	public function createCmdObj($cmdName){
+		$cmdFile = $this->_mapper->mapToCmdFile($cmdName);
+		$this->requireFile($cmdFile);
+		
+		$cmdClass	= $this->_mapper->mapToCmdClass($cmdName);
+		if(! class_exists($cmdClass)){
+			throw new TyfException("tyf cmd class ".$cmdClass." not exists in file ".$cmdFile);
+		}
+		
+		$cmdObj		= new $cmdClass();
+		$cmdObj->init($cmdName, '');
+
+		return $cmdObj;
+	}
+	
 	protected function execute(TyfMeta $tyfInputMeta){
 		$cmdFile = $this->_mapper->mapToCmdFile($tyfInputMeta->getCmdName());
 		$this->requireFile($cmdFile);
