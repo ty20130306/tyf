@@ -47,7 +47,7 @@ class Tyf{
 		
 		$cmdClass	= $this->_mapper->mapToCmdClass($tyfInputMeta->getCmdName());
 		if(! class_exists($cmdClass)){
-			throw new TyfException("cmd class ".$cmdClass." not exists in file ".$cmdFile);
+			throw new TyfException("tyf cmd class ".$cmdClass." not exists in file ".$cmdFile);
 		}
 		
 		$actionFunc	= $this->_mapper->mapToActionFunc($tyfInputMeta->getActionName());
@@ -62,7 +62,7 @@ class Tyf{
 	
 	protected function requireFile($cmdFile){
 		if( ! file_exists($cmdFile)){
-			throw new TyfException("cmd file not exists, file=".$cmdFile);
+			throw new TyfException("tyf cmd file not exists, file=".$cmdFile);
 		}
 		
 		require_once $cmdFile;
