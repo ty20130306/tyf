@@ -1,6 +1,6 @@
 <?php
 
-abstract class TyfFormaterAbstract{
+abstract class TyfFormatterAbstract{
 	public function formatInput(array $rawDataArr){
 		$len	= count($rawDataArr);
 		$tyfMetaArr	= array();
@@ -26,7 +26,7 @@ abstract class TyfFormaterAbstract{
 	
 }
 
-class TyfDefaultFormater extends TyfFormaterAbstract{
+class TyfDefaultFormatter extends TyfFormatterAbstract{
 	
 	protected function createTyfMeta($rawData){
 		return new TyfMeta($rawData['cmd'], $rawData['action'], $rawData['data']);
